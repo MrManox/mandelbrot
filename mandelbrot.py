@@ -2,6 +2,7 @@ from PIL import Image
 import numpy as np
 import math as m
 import sys
+import itertools
 
 def mandelbrot(z, maxiter):
     c = z
@@ -53,7 +54,7 @@ mset = mandelbrot_set(-2.0, 0.5, -1.25, 1.25, width, height, iterations)
 
 img = Image.new('RGB', (width, height))
 
-maxVal = max([max(val) for val in mset])
+maxVal = max(itertools.chain(*mset))
 
 for x, row in enumerate(mset):
     for y, val in enumerate(row):
